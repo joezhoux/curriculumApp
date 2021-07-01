@@ -17,7 +17,7 @@ router.route('/:id')
     res.send('got a post request')
   })
   .delete((req, res) => {
-    res.send('got a post request')
+    res.send('delete a post request')
   })
 
 module.exports = router
