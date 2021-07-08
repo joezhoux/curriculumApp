@@ -1,23 +1,38 @@
 const express = require('express')
+const mongoose = require('mongoose')
+const { Curriculum } = require('@db')
+
 const router = express.Router()
 
 router.route('/')
-  .get((req, res) => {
-    res.send('hello curricula')
+  .get(async (req, res) => {
+    const curricula = await Curriculum.find()
+    res.send(curricula)
   })
-  .post((req, res) => {
-    res.send('got a post request')
+  .post(async (req, res) => {
+    const { name, goal, description, sections } = req.body
+    const curriculum = new Curriculum({
+      name,
+      goal,
+      description,
+      sections
+    })
+    await curriculum.save()
+    res.send(201, 'Success')
   })
 
 router.route('/:id')
-  .get((req, res) => {
-    res.send(req.params)
+  .get(async (req, res) => {
+    const curriculum = await Curriculum.findById(req.params.id)
+    res.send(curriculum)
   })
-  .patch((req, res) => {
-    res.send('got a post request')
+  .patch(async (req, res) => {
+    await Curriculum.updateOne({ _id: req.params.id }, { ...req.body })
+    res.send('patch success')
   })
-  .delete((req, res) => {
-    res.send('delete a post request')
+  .delete(async (req, res) => {
+    await Curriculum.deleteOne({ _id: req.params.id })
+    res.send('delete success')
   })
 
 module.exports = router
