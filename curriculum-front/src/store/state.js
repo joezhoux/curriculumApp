@@ -1,5 +1,5 @@
-import curriculaData from '@/data/curricula'
+import curricula from '@/data/curricula'
 
 export default {
-  curriculaData
+  curricula
 }

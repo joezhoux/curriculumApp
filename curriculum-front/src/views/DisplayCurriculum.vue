@@ -76,11 +76,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['curriculaData'])
+    ...mapState(['curricula'])
   },
   mounted () {
-    this.selectedCurriculum = this.curriculaData.find(c => {
-      return c.id === this.$route.params.id
+    this.selectedCurriculum = this.curricula.find(c => {
+      return c._id === this.$route.params.id
     })
   }
 }
