@@ -11,7 +11,7 @@
         <v-col>
           <v-expansion-panels multiple>
             <v-expansion-panel v-for="(section, i) in selectedCurriculum.sections"
-            :key="section + i">
+            :key="i">
               <v-expansion-panel-header>Section {{ i + 1 }} - {{ section.name }}</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-list subheader two-line flat>
@@ -19,7 +19,7 @@
 
                   <v-list-item-group multiple>
                     <v-list-item v-for="(resource, j) in section.resources"
-                    :key="resource + j">
+                    :key="j">
                       <template v-slot:default="{ active }">
                         <v-list-item-action>
                           <v-checkbox
@@ -40,7 +40,7 @@
 
                   <v-list-item-group multiple>
                     <v-list-item v-for="(project, k) in section.projects"
-                    :key="project + k">
+                    :key="k">
                       <template v-slot:default="{ active }">
                         <v-list-item-action>
                           <v-checkbox
