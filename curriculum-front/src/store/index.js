@@ -13,7 +13,8 @@ const vuexLocal = new VuexPersistence({
 
 export default new Vuex.Store({
   state,
-  mutations,
   actions,
+  mutations,
+  getters: {},
   plugins: [vuexLocal.plugin]
 })

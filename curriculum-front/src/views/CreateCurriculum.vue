@@ -56,8 +56,19 @@
               <v-card-text>
                 <v-row>
                   <v-col cols="12">
+                    <v-text-field placeholder="Enter Resource Name"
+                     v-model="section.newResource.name" />
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
                     <v-text-field placeholder="Enter Resource Link"
-                     v-model="section.newResource" @keyup.enter="addItem('resource', k)" />
+                     v-model="section.newResource.link" @keyup.enter="addItem('resource', k)" />
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
+                    <v-btn @click="addItem('resource', k)"></v-btn>
                   </v-col>
                 </v-row>
                 <v-row v-if="section.resources.length">
@@ -66,7 +77,7 @@
                       <template v-for="(resource, m) in section.resources">
                         <v-list-item :key="m">
                           <v-list-item-content>
-                            {{ resource }}
+                            {{ resource.name }}
                           </v-list-item-content>
                           <v-list-item-action>
                             <v-icon color="red lighten-2" @click="deleteItem('resources', k, m)">
@@ -84,8 +95,19 @@
               <v-card-text>
                 <v-row>
                   <v-col cols="12">
+                    <v-text-field placeholder="Enter Projects Name"
+                     v-model="section.newProject.name" />
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
                     <v-text-field placeholder="Enter Projects Link"
-                     v-model="section.newProject" @keyup.enter="addItem('project', k)" />
+                     v-model="section.newProject.link" @keyup.enter="addItem('project', k)" />
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12">
+                    <v-btn @click="addItem('project', k)"></v-btn>
                   </v-col>
                 </v-row>
                 <v-row v-if="section.projects.length">
@@ -94,7 +116,7 @@
                       <template v-for="(project, m) in section.projects">
                         <v-list-item :key="m">
                           <v-list-item-content>
-                            {{ project }}
+                            {{ project.name }}
                           </v-list-item-content>
                           <v-list-item-action>
                             <v-icon color="red lighten-2" @click="deleteItem('projects', k, m)">
@@ -133,9 +155,15 @@ export default {
       sections: [{
         name: '',
         goal: '',
-        newResource: '',
+        newResource: {
+          link: '',
+          name: ''
+        },
         resources: [],
-        newProject: '',
+        newProject: {
+          link: '',
+          name: ''
+        },
         projects: []
       }]
     }
@@ -157,7 +185,15 @@ export default {
       this.sections.push({
         name: '',
         goal: '',
+        newResource: {
+          link: '',
+          name: ''
+        },
         resources: [],
+        newProject: {
+          link: '',
+          name: ''
+        },
         projects: []
       })
     },
